@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluri Sarath Chandra - Full Stack Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset & Typography */
+        :root {
+            --primary-color: #007bff; /* Blue */
+            --secondary-color: #6c757d; /* Grey */
+            --dark-bg: #212529; /* Dark Grey */
+            --light-bg: #f8f9fa; /* Light Grey */
+            --white: #ffffff;
+            --text-dark: #343a40;
+            --text-light: #e9ecef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--white);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.8em; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.8em; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .button:hover {
+            background: #0056b3;
+            color: var(--white);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: var(--dark-bg);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .navbar .nav-links li {
+            display: inline-block;
+            margin-left: 25px;
+        }
+
+        .navbar .nav-links a {
+            color: var(--text-light);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(33, 37, 41, 0.8), rgba(33, 37, 41, 0.8)), img src="SARATH PHOTO NEW.jpg" center center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .hero-contact-info {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: var(--text-light);
+        }
+        .hero-contact-info span {
+            margin: 0 10px;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            color: var(--dark-bg);
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .bg-light {
+            background-color: var(--light-bg);
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        #about .about-image {
+            flex: 1;
+            min-width: 250px;
+            margin-right: 40px;
+            text-align: center;
+        }
+
+        #about .about-image img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        #about .about-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        #about .about-text p {
+            font-size: 1.1em;
+            color: var(--secondary-color);
+        }
+
+        /* Skills Section */
+        #skills .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        #skills .skill-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        #skills .skill-item:hover {
+            transform: translateY(-10px);
+        }
+
+        #skills .skill-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        #skills .skill-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #skills .skill-item li {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        /* Experience Section */
+        #experience .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        #experience .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        #experience .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            text-align: left;
+        }
+
+        #experience .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--white);
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        #experience .timeline-item-left {
+            left: 0;
+        }
+
+        #experience .timeline-item-right {
+            left: 50%;
+        }
+
+        #experience .timeline-item-right::after {
+            left: -16px;
+        }
+
+        #experience .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        #experience .timeline-content h3 {
+            color: var(--dark-bg);
+            font-size: 1.5em;
+        }
+        #experience .timeline-content p.company {
+            color: var(--secondary-color);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        #experience .timeline-content ul {
+            list-style: disc;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        /* Projects Section */
+        #projects .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        #projects .project-card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        #projects .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        #projects .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        #projects .project-card-content {
+            padding: 25px;
+        }
+
+        #projects .project-card-content h3 {
+            color: var(--dark-bg);
+            margin-bottom: 10px;
+        }
+
+        #projects .project-card-content p {
+            font-size: 0.95em;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        #projects .project-card-content .button {
+            padding: 8px 18px;
+            font-size: 0.9em;
+        }
+
+        /* Certifications & Strengths */
+        #certs-strengths .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        #certs-strengths .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+
+        #certs-strengths .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        #certs-strengths .card ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        #certs-strengths .card ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9em;
+        }
+
+        footer .social-links a {
+            color: var(--white);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+            .navbar .nav-links {
+                margin-top: 15px;
+            }
+            .navbar .nav-links li {
+                margin: 0 10px;
+            }
+
+            #hero h1 { font-size: 2.5em; }
+            #hero p { font-size: 1.1em; }
+
+            #about .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            #about .about-image {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+            #about .about-text {
+                min-width: unset;
+            }
+
+            #experience .timeline::after {
+                left: 18px;
+            }
+
+            #experience .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 25px;
+            }
+
+            #experience .timeline-item::after {
+                left: 10px;
+            }
+            #experience .timeline-item-right {
+                left: 0%;
+            }
+
+            #experience .timeline-item-left::after {
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            .hero-contact-info span {
+                display: block;
+                margin: 5px 0;
+            }
+            .section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Aluri Sarath Chandra</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certs-strengths">Certifications</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Hi, I'm Aluri Sarath Chandra</h1>
+            <p>A passionate Computer Science Graduate & Full Stack Developer Enthusiast</p>
+            <div class="hero-contact-info">
+                <span>📍 Vijayawada, India</span> | 
+                <span>📞 8297545438</span> | 
+                <span>✉️ a.sarath4546@gmail.com</span>
+            </div>
+            <a href="#projects" class="button">View My Work</a>
+        </div>
+    </section>
+
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="SARATH PHOTO NEW.jpg" alt="Aluri Sarath Chandra">
+                </div>
+                <div class="about-text">
+                    <p>Motivated Computer Science graduate with strong communication skills and a passion for software development. I thrive on building impactful applications and continuously expanding my technical expertise. My internship at Virtusa as a Full Stack React.js Developer provided me with hands-on experience in developing responsive web pages, assisting with backend API work using Node.js, and implementing core features like authentication and data workflows.</p>
+                    <p>I'm a quick learner with strong analytical and problem-solving skills, always eager to contribute to innovative projects and grow professionally in a dynamic environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Web Technologies</h3>
+                    <ul>
+                        <li>HTML, CSS</li>
+                        <li>React.js (Basic)</li>
+                        <li>Node.js (Basic)</li>
+                    </ul>
+                </div>
+                <div class="skill-item">
+                    <h3>Tools & Others</h3>
+                    <ul>
+                        <li>Git</li>
+                        <li>VS Code</li>
+                        <li>Microsoft Azure Fundamentals (AZ-900)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item timeline-item-right">
+                    <div class="timeline-content">
+                        <h3>Full Stack React.js Developer – Intern</h3>
+                        <p class="company">Virtusa (Delivery Intern) | May 2023 – Aug 2023</p>
+                        <ul>
+                            <li>Developed responsive web pages using React.js, HTML & CSS.</li>
+                            <li>Assisted backend API development using Node.js & Express.js.</li>
+                            <li>Implemented essential features including authentication, validation, & data workflows.</li>
+                            <li>Participated in testing, debugging, and performance fixes to ensure application reliability.</li>
+                            <li>Collaborated with cross-functional teams to improve UI/UX and system reliability.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Smart Flood Detection & Traffic Alert System</h3>
+                        <p>Built a real-time flood detection system utilizing water-level sensors & NRF24L01+ module, designed to send immediate alerts to authorities to clear flooded traffic routes in real time.</p>
+                        <a href="https://ieeexplore.ieee.org/document/10119413" class="button">View Details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-card-content">
+                        <h3>Wetland Detection & Change Analysis System</h3>
+                        <p>Employed multi-band image processing with the HSV color model for accurate wetland analysis, tracking waterbody area changes to support environmental monitoring.</p>
+                        <a href="https://ieeexplore.ieee.org/document/10061110" class="button">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certs-strengths" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Certifications & Strengths</h2>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Certifications</h3>
+                    <ul>
+                        <li>Microsoft Azure Fundamentals (AZ-900)</li>
+                        <li>Technical workshops & coding event participation</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Strengths</h3>
+                    <ul>
+                        <li>Effective communication & teamwork</li>
+                        <li>Quick learner with adaptability</li>
+                        <li>Strong analytical & problem-solving skills</li>
+                        <li>Detail-oriented & responsible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aluri Sarath Chandra. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/alurisarathchandra" target="_blank" title="LinkedIn"><img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn"></a>
+                <a href="https://github.com/yourusername" target="_blank" title="GitHub"><img src="https://img.icons8.com/ios-filled/24/ffffff/github.png" alt="GitHub"></a>
+                </div>
+        </div>
+    </footer>
+
+</body>
+</html>
